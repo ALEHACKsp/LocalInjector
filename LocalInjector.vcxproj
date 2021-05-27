@@ -88,6 +88,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\DllMain.cc" />
+    <ClCompile Include="Source\Utilities\Utilities.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\DllMain.hh" />
+    <ClInclude Include="Source\Includes.hh" />
+    <ClInclude Include="Source\Utilities\LazyImporter.hh" />
+    <ClInclude Include="Source\Utilities\Singleton.hh" />
+    <ClInclude Include="Source\Utilities\Utilities.hh" />
+    <ClInclude Include="Source\Utilities\XorStr.hh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
