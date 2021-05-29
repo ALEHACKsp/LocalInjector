@@ -1,26 +1,34 @@
 #include "Utilities.hh"
 
-bool CUtilities::IsProcessActive(std::wstring sProcess) {
+bool CUtilities::IsProcessActive(std::string sProcess) {
 
 	HANDLE hSnapshot = LI_FN(CreateToolhelp32Snapshot)(TH32CS_SNAPPROCESS, 0UL);
 
+	if (!hSnapshot) {
+
+		return false;
+	}
+
 	LI_FN(memset)(&g_ProcessEntry, NULL, sizeof(g_ProcessEntry));
-	g_ProcessEntry.dwSize = sizeof(PROCESSENTRY32);
+	g_ProcessEntry.dwSize = sizeof(g_ProcessEntry);
 
-	LI_FN(Process32First)(hSnapshot, &g_ProcessEntry);
+	if (!LI_FN(Process32First)(hSnapshot, &g_ProcessEntry)) {
 
-	if (!LI_FN(_wcsicmp)((wchar_t*)&g_ProcessEntry.szExeFile, sProcess.c_str())) {
-
-		return true;
+		return false;
 	}
 
-	while (LI_FN(Process32Next)(hSnapshot, &g_ProcessEntry)) {
+	do {
 
-		if (!LI_FN(_wcsicmp)((wchar_t*)&g_ProcessEntry.szExeFile, sProcess.c_str())) {
+		if (!LI_FN(strcmp)(g_ProcessEntry.szExeFile, sProcess.c_str())) {
 
-			return true;
+			LI_FN(CloseHandle)(hSnapshot);
+
+			return g_ProcessEntry.th32ProcessID;
 		}
-	}
+
+	} while (LI_FN(Process32Next)(hSnapshot, &g_ProcessEntry));
+
+	LI_FN(CloseHandle)(hSnapshot);
 
 	return false;
 }

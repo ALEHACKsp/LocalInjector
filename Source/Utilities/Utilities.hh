@@ -7,7 +7,7 @@
 
 class CUtilities : public CSingleton<CUtilities> {
 public:
-	bool IsProcessActive(std::wstring sProcess = L"Process.exe");
+	bool IsProcessActive(std::string sProcess = XorStr("Process.exe"));
 
 	void CreateConsole();
 	void DetachConsole();

@@ -7,19 +7,19 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 	CUtilities::Get().ConsolePrint(XorStr("Local Injector by Dylane (Warface DX11) \n"));
 	std::this_thread::sleep_for(600ms);
 
-	if (!CUtilities::Get().IsProcessActive(L"GameDX11.exe")) {
+	if (!CUtilities::Get().IsProcessActive(XorStr("GameDX11.exe"))) {
 
 		CUtilities::Get().ConsolePrint(XorStr("[Failed] Game isn't running, start game first \n"));
 		std::this_thread::sleep_for(600ms);
 
-		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closed after 3 seconds \n"));
+		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closes after 3 secondss \n"));
 		std::this_thread::sleep_for(3s);
 
 		return EXIT_FAILURE;
 	}
 
 	/* Find window */
-	HWND hGameHWND = LI_FN(FindWindow)(XorStr("CryENGINE"), XorStr("Warface"));
+	HWND hGameHWND = IFH_64(FindWindow)(XorStr("CryENGINE"), XorStr("Warface"));
 
 	if (hGameHWND) {
 
@@ -32,7 +32,7 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 		CUtilities::Get().ConsolePrint(XorStr("[Failed] Couldn't find target window \n"));
 		std::this_thread::sleep_for(600ms);
 
-		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closed after 3 seconds \n"));
+		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closes after 3 seconds \n"));
 		std::this_thread::sleep_for(3s);
 
 		return EXIT_FAILURE;
@@ -52,7 +52,7 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 		CUtilities::Get().ConsolePrint(XorStr("[Failed] Couldn't get thread id of window \n"));
 		std::this_thread::sleep_for(600ms);
 
-		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closed after 3 seconds \n"));
+		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closes after 3 seconds \n"));
 		std::this_thread::sleep_for(3s);
 
 		return EXIT_FAILURE;
@@ -71,7 +71,7 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 		CUtilities::Get().ConsolePrint(XorStr("[Failed] The DLL couldn't be found \n"));
 		std::this_thread::sleep_for(600ms);
 
-		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closed after 3 seconds \n"));
+		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closes after 3 seconds \n"));
 		std::this_thread::sleep_for(3s);
 
 		return EXIT_FAILURE;
@@ -90,7 +90,7 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 		CUtilities::Get().ConsolePrint(XorStr("[Failed] The function wasn't found \n"));
 		std::this_thread::sleep_for(600ms);
 
-		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closed after 3 seconds \n"));
+		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closes after 3 seconds \n"));
 		std::this_thread::sleep_for(3s);
 
 		return EXIT_FAILURE;
@@ -104,7 +104,7 @@ BOOL APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 		CUtilities::Get().ConsolePrint(XorStr("[Failed] Couldn't set the hook \n"));
 		std::this_thread::sleep_for(600ms);
 
-		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closed after 3 seconds \n"));
+		CUtilities::Get().ConsolePrint(XorStr("[Waiting] This window closes after 3 seconds \n"));
 		std::this_thread::sleep_for(3s);
 
 		return EXIT_FAILURE;
